@@ -11,7 +11,7 @@ api = Api(app, catch_all_404s=True)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
-CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 def getApp():
     return app
