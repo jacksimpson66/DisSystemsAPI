@@ -1,6 +1,5 @@
 from flask.helpers import make_response
 from flask_migrate import init
-from werkzeug.datastructures import V
 from app import app, db, api
 from .models import Module, Lecture
 from flask import jsonify, make_response
