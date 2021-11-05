@@ -17,7 +17,7 @@ class ModulesAPI(Resource):
         for m in modules:
             serialized_module = Module.serialize(m)
             json_to_return.append(serialized_module)
-        return json_to_return
+        return json_to_return, 200, {'Access-Control-Allow-Headers':'*'}
 
 
 class LecturesAPI(Resource):
@@ -34,7 +34,7 @@ class LecturesAPI(Resource):
         for l in lectures:
             serialized_lecture = Lecture.serialize(l)
             json_to_return.append(serialized_lecture)
-        return json_to_return
+        return json_to_return, 200, {'Access-Control-Allow-Headers':'*'}
 
 #add endpoints
 api.add_resource(ModulesAPI, '/modules', endpoint='modules')
