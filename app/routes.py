@@ -21,6 +21,25 @@ class ModulesAPI(Resource):
             json_to_return['modules'].append(serialized_module)
         return json_to_return
 
+class LoadModulesAPI(Resource):
+    def get(self):
+        m1 = Module(name="Computer Graphics")
+        m2 = Module(name="Distributed Systems")
+        m3 = Module(name="User Adaptive Intelligent Systems")
+        m4 = Module(name="Information Visualisation")
+        m5 = Module(name="Machine Learning")
+        m6 = Module(name="Parallel Computation")
+
+        db.session.add(m1)
+        db.session.add(m2)
+        db.session.add(m3)
+        db.session.add(m4)
+        db.session.add(m5)
+        db.session.add(m6)
+
+        db.session.commit()
+
+
 class LecturesAPI(Resource):
     def get(self, module_id):
         #query lectures with module id given by get request
@@ -37,4 +56,5 @@ class LecturesAPI(Resource):
 
 api.add_resource(ModulesAPI, '/modules', endpoint='modules')
 api.add_resource(LecturesAPI, '/lectures/<int:module_id>', endpoint='lectures')
+api.add_resource(LoadModulesAPI, '/loadmodules', endpoint='loadmodules')
 
