@@ -3,7 +3,7 @@ from flask_migrate import init
 from app import app, db, api
 from .models import Module, Lecture
 from flask import jsonify, make_response
-from flask_restful import Resource, reqparse
+from flask_restful import Resource, reqparse, abort
 import json
 
 
@@ -24,7 +24,7 @@ class LecturesAPI(Resource):
     def get(self, module_id):
         #check to see if module id exists
         if Lecture.query.filter_by(module_id=module_id).count() < 1:
-            return "Module Does Not Exist",404
+            abort(404, message=f"Module {module_id} does not exist")
 
         #query lectures with module id given by get request
         lectures = Lecture.query.filter_by(module_id=module_id)
