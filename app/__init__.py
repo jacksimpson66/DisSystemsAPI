@@ -6,7 +6,7 @@ from flask_migrate import Migrate
 from flask_restful import Api, Resource
 
 app = Flask(__name__)
-api = Api(app)
+api = Api(app, catch_all_404s=True)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
