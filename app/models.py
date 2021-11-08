@@ -1,9 +1,11 @@
+"""
+Classes defined which SQL_Alchemy uses to manage database at a high level
+"""
+
 from app import db
 
 
-#Module class for db
 class Module(db.Model):
-    #primary key set
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True, unique=True)
     #
@@ -19,9 +21,8 @@ class Module(db.Model):
             'name': self.name
         }
 
-#Lecture class for db
+
 class Lecture(db.Model):
-    #set primary key
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64))
     room = db.Column(db.String(64))
